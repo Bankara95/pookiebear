@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PookieBear ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ffe6f0;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    h1 {
+        color: #ff4d88;
+        margin-bottom: 40px;
+    }
+
+    button {
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    #yesBtn {
+        background: #4CAF50;
+        color: white;
+        padding: 15px 35px;
+        font-size: 22px;
+        border-radius: 12px;
+        margin-right: 20px;
+    }
+
+    #noBtn {
+        position: absolute;
+        background: #ff5555;
+        color: white;
+        padding: 3px 6px;
+        font-size: 8px;
+        border-radius: 50%;
+    }
+
+    .success {
+        font-size: 42px;
+        color: #ff4d88;
+        animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+        from {
+            transform: scale(0);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="content">
+    <h1>Möchtest du mein PookieBear sein? ❤️</h1>
+
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">Nein</button>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const content = document.getElementById("content");
+
+function moveNoButton() {
+    const maxX = window.innerWidth - 80;
+    const maxY = window.innerHeight - 50;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+
+    const shapes = [
+        "50%",
+        "0%",
+        "25%",
+        "40% 10% 50% 20%",
+        "10px",
+        "30% 70% 20% 60%"
+    ];
+
+noBtn.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    moveNoButton();
+});
+
+    noBtn.style.borderRadius =
+        shapes[Math.floor(Math.random() * shapes.length)];
+
+    const size = Math.random() * 6 + 5;
+
+    noBtn.style.fontSize = size + "px";
+    noBtn.style.padding = size / 2 + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("click", moveNoButton);
+
+yesBtn.addEventListener("click", () => {
+    content.innerHTML = `
+        <div class="success">
+            YAYYY!! 💖🥰<br><br>
+            See you tonight💖
+        </div>
+    `;
+});
+</script>
+
+</body>
+</html>
